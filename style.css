@@ -1,0 +1,177 @@
+/* style.css */
+
+/* Custom Fonts */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+h1,
+h2 {
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* Background Animation */
+.background-animation-layer {
+    background: radial-gradient(circle at 10% 20%, rgba(20, 30, 70, 0.8) 0%, rgba(0, 0, 0, 0.8) 100%);
+    animation: background-shift 15s ease-in-out infinite alternate;
+}
+
+@keyframes background-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+/* General Container Animation */
+.game-container.loaded {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Text Pulse Animation */
+@keyframes pulse-slow {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.animate-pulse-slow {
+    animation: pulse-slow 3s infinite ease-in-out;
+}
+
+/* Question and Answer Button Animations */
+.question-animation {
+    animation: slideInUp 0.6s ease-out forwards;
+}
+
+.answer-btn {
+    animation: fadeIn 0.5s ease-out forwards;
+    opacity: 0;
+    /* Start hidden for animation */
+}
+
+/* Delay for each button to animate in sequence */
+.answer-btn:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.answer-btn:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.answer-btn:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.answer-btn:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Feedback Animations */
+.correct-answer {
+    background-color: #10B981 !important;
+    /* Tailwind green-500 */
+    border-bottom-color: #059669 !important;
+    /* Darker green */
+    animation: flashGreen 0.3s ease-out forwards;
+}
+
+.incorrect-answer {
+    background-color: #EF4444 !important;
+    /* Tailwind red-500 */
+    border-bottom-color: #DC2626 !important;
+    /* Darker red */
+    animation: flashRed 0.3s ease-out forwards;
+}
+
+@keyframes flashGreen {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    }
+
+    50% {
+        transform: scale(1.02);
+        box-shadow: 0 0 15px 5px rgba(16, 185, 129, 0.7);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: none;
+    }
+}
+
+@keyframes flashRed {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+    }
+
+    50% {
+        transform: scale(1.02);
+        box-shadow: 0 0 15px 5px rgba(239, 68, 68, 0.7);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: none;
+    }
+}
+
+/* Custom button styles (Tailwind already handles much, but for specific effects) */
+.action-btn {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.action-btn:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    transition: all 0.75s ease-out;
+    transform: translate(-50%, -50%) scale(0);
+    z-index: -1;
+}
+
+.action-btn:hover:before {
+    transform: translate(-50%, -50%) scale(1);
+}

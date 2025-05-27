@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Game</title>
+    <link rel="stylesheet" href="Content.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <nav class="navbar w-full p-4 md:px-8 flex items-center justify-between relative">
+        <div class="flex items-center space-x-3">
+            <svg class="w-8 h-8 text-blue-400" fill="currentColor" viewBox="0 0 20 20"
+                xmlns="https://www.facebook.com/photo/?fbid=102949239428341&set=a.102937042762894">
+                <path fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zm-.464 5.232a3 3 0 01-4.243 0 1 1 0 00-1.414 1.414 5 5 0 007.071 0 1 1 0 00-1.414-1.414z"
+                    clip-rule="evenodd"></path>
+            </svg>
+            <span class="text-2xl font-bold text-white logo-text">
+                <span>Q</span><span>u</span><span>i</span><span>z</span><span> G</span><span>a</span><span>m</span><span>e</span>
+            </span>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-8">
+            <a href="#" class="text-lg font-medium text-gray-300 nav-link">Home</a>
+            <a href="#" class="text-lg font-medium text-gray-300 nav-link group">
+                About
+                <div
+                    class="about-popover absolute bg-slate-700 text-gray-200 p-4 rounded-lg shadow-xl w-64 max-w-xs mt-2 left-1/2 transform -translate-x-1/2 z-20">
+                    <p class="text-sm">We are IronMind, dedicated to sharpening your knowledge and challenging your
+                        intellect with engaging quizzes and insights.</p>
+                </div>
+            </a>
+            <a href="#" class="text-lg font-medium text-gray-300 nav-link">Contact</a>
+            <a href="Index.html" class="text-lg font-medium text-gray-300 nav-link">Game</a>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-4">
+            <div class="relative">
+                <input type="text" placeholder="Search..."
+                    class="search-input bg-gray-700 text-white rounded-full py-2 px-4 pl-10 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200">
+                <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 search-icon"
+                    fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+            </div>
+            <button
+                class="btn-secondary bg-gray-600 hover:bg-gray-700 text-white font-semibold py-2 px-5 rounded-full">Sign
+                In</button>
+            <button class="btn-primary bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-5 rounded-full">Log
+                In</button>
+        </div>
+
+        <div class="md:hidden flex items-center">
+            <div id="hamburger" class="hamburger-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div id="mobile-menu"
+        class="mobile-menu fixed top-0 right-0 h-full w-64 p-6 shadow-lg flex flex-col space-y-6 md:hidden">
+        <button id="close-mobile-menu" class="self-end text-white text-3xl">&times;</button>
+        <a href="#" class="text-xl font-medium text-gray-300 hover:text-white transition-colors duration-200">गृह</a>
+        <a href="#" class="text-xl font-medium text-gray-300 hover:text-white transition-colors duration-200">बारेमा</a>
+        <a href="#"
+            class="text-xl font-medium text-gray-300 hover:text-white transition-colors duration-200">सम्पर्क गर्नुहोस्</a>
+        <div class="relative w-full mt-4">
+            <input type="text" placeholder="Search..."
+                class="search-input bg-gray-700 text-white rounded-full py-2 px-4 pl-10 w-full focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200">
+            <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 search-icon"
+                fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+        </div>
+        <button
+            class="btn-secondary bg-gray-600 hover:bg-gray-700 text-white font-semibold py-2 px-5 rounded-full w-full">Sign
+            In</button>
+        <button class="btn-primary bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-5 rounded-full w-full">Log
+            In</button>
+    </div>
+
+    <main class="p-8 text-center w-full max-w-4xl mx-auto mt-8">
+        <div id="carousel-container"
+            class="relative w-full overflow-hidden rounded-xl shadow-2xl bg-gradient-to-br from-blue-800 to-purple-800 p-8">
+            <div id="carousel-slides" class="flex transition-transform duration-700 ease-in-out">
+                <div
+                    class="carousel-slide flex-shrink-0 w-full flex flex-col items-center justify-center text-center py-16 px-4">
+                    <h2 class="text-5xl md:text-6xl font-extrabold text-white mb-4 animate-welcome-text">
+                    हामी हाम्रो क्विज  <span class="text-yellow-300">खेलमा आउनुहोस्।</span>!
+                    </h2>
+                    <p class="text-xl md:text-2xl text-blue-200">आफ्नो दिमागलाई चुनौती दिनुहोस् र रमाईलो गर्नुहोस्।</p>
+                </div>
+                <div
+                    class="carousel-slide flex-shrink-0 w-full flex flex-col items-center justify-center text-center py-16 px-4">
+                    <h2 class="text-5xl md:text-6xl font-extrabold text-white mb-4 animate-welcome-text">
+                        तपाईको परीक्षण गर्नुहोस् <span class="text-green-300">ज्ञान।</span>!
+                    </h2>
+                    <p class="text-xl md:text-2xl text-blue-200">तथ्य र ट्रिभियाको संसार अन्वेषण गर्नुहोस्।</p>
+                </div>
+                <div
+                    class="carousel-slide flex-shrink-0 w-full flex flex-col items-center justify-center text-center py-16 px-4">
+                    <h2 class="text-5xl md:text-6xl font-extrabold text-white mb-4 animate-welcome-text">
+                        सामेल हुनुहोस्<span class="text-pink-300">रमाइलो।</span>!
+                    </h2>
+                    <p class="text-xl md:text-2xl text-blue-200">खेल सुरु गर्न साइन अप गर्नुहोस् वा लग इन गर्नुहोस्।</p>
+                </div>
+            </div>
+
+            <button id="carousel-prev"
+                class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-40 text-white p-3 rounded-full shadow-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+            </button>
+            <button id="carousel-next"
+                class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-40 text-white p-3 rounded-full shadow-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </button>
+
+            <div id="carousel-dots" class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+            </div>
+        </div>
+
+        <h1 class="text-4xl font-bold mt-16">"कृपया हाम्रो क्विज गेम अन्वेषण गर्नुहोस् र गेम जित्ने मौका पाउनुहोस्।"</h1>
+        <p class="text-lg text-gray-400 mt-4"></p>
+    </main>
+
+    <footer class="w-full bg-gray-900 text-gray-400 py-8 mt-16">
+        <div
+            class="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center text-center md:text-left space-y-4 md:space-y-0 px-4">
+            <div class="text-sm">
+                &copy; 2025 Jiban Limbu. All rights reserved.
+            </div>
+
+            <div class="flex flex-wrap justify-center md:justify-start space-x-4">
+                <a href="#" class="hover:text-white transition-colors duration-200">Privacy Policy</a>
+                <span class="text-gray-600">|</span>
+                <a href="#" class="hover:text-white transition-colors duration-200">Terms of Service</a>
+            </div>
+
+            <div class="flex space-x-4">
+                <a href="#" class="hover:text-white transition-colors duration-200">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path fill-rule="evenodd"
+                            d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33V22H12c5.523 0 10-4.477 10-10z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </a>
+                <a href="#" class="hover:text-white transition-colors duration-200">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                            d="M.057 2.007a1.125 1.125 0 011.666-.358L10.371 9.42a.75.75 0 001.258 0l8.648-7.771a1.125 1.125 0 011.666.358l-.004.008c.506 1.026.816 2.164.816 3.485V18a3 3 0 01-3 3H3a3 3 0 01-3-3V5.142c0-1.321.31-2.459.816-3.485l-.004-.008zM12 11.25a.75.75 0 00-.75.75v3a.75.75 0 001.5 0v-3a.75.75 0 00-.75-.75z" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+   
+</body>
+<script src="index.js"></script>
+</html>

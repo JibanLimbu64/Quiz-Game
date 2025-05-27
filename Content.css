@@ -1,0 +1,310 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #0f172a;
+    /* Slate-900 for a dark background */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    color: #e2e8f0;
+    /* Light text color */
+}
+
+/* Custom CSS for Animations and UI/UX enhancements */
+.navbar {
+    background-color: #1e293b;
+    /* Slate-800 */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
+}
+
+/* Navbar link hover effect */
+.nav-link {
+    position: relative;
+    transition: color 0.3s ease-in-out, transform 0.2s ease-out;
+    padding: 0.5rem 0;
+    /* Add vertical padding for better touch target */
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background-color: #3b82f6;
+    /* Blue-500 */
+    transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+    border-radius: 2px;
+}
+
+.nav-link:hover {
+    color: #93c5fd;
+    /* Blue-300 */
+    transform: translateY(-2px);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+/* Button hover/active effects */
+.btn-primary {
+    transition: all 0.3s ease-in-out;
+    transform: scale(1);
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(59, 130, 246, 0.4);
+    /* Blue shadow */
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.btn-secondary {
+    transition: all 0.3s ease-in-out;
+    transform: scale(1);
+}
+
+.btn-secondary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(100, 116, 139, 0.4);
+    /* Gray shadow */
+}
+
+.btn-secondary:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Search input focus effect */
+.search-input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    /* Blue-500 */
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+    /* Blue ring */
+}
+
+/* Hamburger menu animation */
+.hamburger-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.hamburger-icon span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #e2e8f0;
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
+}
+
+.hamburger-icon.open span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger-icon.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-icon.open span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+/* Mobile menu slide-in/out */
+.mobile-menu {
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    background-color: #1e293b;
+    /* Slate-800 */
+    z-index: 10;
+    /* Ensure it's above other content */
+}
+
+.mobile-menu.open {
+    transform: translateX(0);
+}
+
+/* Text animation on logo */
+.logo-text span {
+    display: inline-block;
+    opacity: 0;
+    animation: fadeInSlideUp 0.8s forwards;
+}
+
+.logo-text span:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.logo-text span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.logo-text span:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.logo-text span:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.logo-text span:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+.logo-text span:nth-child(6) {
+    animation-delay: 0.6s;
+}
+
+.logo-text span:nth-child(7) {
+    animation-delay: 0.7s;
+}
+
+.logo-text span:nth-child(8) {
+    animation-delay: 0.8s;
+}
+
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Search icon animation */
+.search-icon {
+    transition: transform 0.2s ease-out;
+}
+
+.search-icon:hover {
+    transform: scale(1.1);
+}
+
+/* About popover specific styles */
+.about-popover {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    /* Triangle for popover - using ::before */
+    position: absolute;
+    /* Needed for ::before positioning */
+}
+
+/* Show popover on hover/focus-within of the parent nav-link */
+.nav-link:hover .about-popover,
+.nav-link:focus-within .about-popover {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Triangle for popover */
+.about-popover::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    /* Position above the popover content */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #475569;
+    /* Match popover background color (slate-700) */
+}
+
+/* Carousel specific styles */
+#carousel-container {
+    height: 400px;
+    /* Fixed height for the carousel */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#carousel-slides {
+    height: 100%;
+    /* Ensure slides take full height of container */
+    position: relative;
+    /* For absolute positioning of slides */
+    width: 100%;
+    /* Take full width of container */
+}
+
+.carousel-slide {
+    height: 100%;
+    /* Ensure slide content takes full height */
+    opacity: 0;
+    /* Hide slides by default */
+    position: absolute;
+    /* Position slides on top of each other for fading */
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: opacity 0.7s ease-in-out;
+    /* Fade transition */
+}
+
+.carousel-slide.active {
+    opacity: 1;
+    /* Show active slide */
+    position: relative;
+    /* Bring active slide back to flow for content */
+}
+
+/* Welcome text animation */
+.animate-welcome-text {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlideUpText 1.2s ease-out forwards;
+}
+
+@keyframes fadeInSlideUpText {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Carousel dots */
+.carousel-dot {
+    width: 10px;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.carousel-dot.active {
+    background-color: #fff;
+    transform: scale(1.2);
+}
